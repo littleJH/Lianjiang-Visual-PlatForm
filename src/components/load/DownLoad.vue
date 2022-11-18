@@ -39,26 +39,30 @@ export default {
         },
         responseType: 'arraybuffer'
       }
-      download(path, filename, config).then(res => {
-        // Blob 可以将response的二进制流文件下载到本地
-        const blob = new Blob([res.data], {
-          type: 'application/vnd.ms-excel'
+      download(path, filename, config)
+        .then(res => {
+          // Blob 可以将response的二进制流文件下载到本地
+          const blob = new Blob([res.data], {
+            type: 'application/vnd.ms-excel'
+          })
+          // 创建下载的链接
+          const href = window.URL.createObjectURL(blob)
+          const downloadElement = document.createElement('a')
+          downloadElement.href = href
+          downloadElement.style.display = 'none'
+          // 下载后的文件名
+          downloadElement.download = this.value
+          document.body.appendChild(downloadElement)
+          // 点击下载
+          downloadElement.click()
+          // 下载完成后移除元素
+          document.body.removeChild(downloadElement)
+          // 释放掉blob对象
+          window.URL.revokeObjectURL(href)
         })
-        // 创建下载的链接
-        const href = window.URL.createObjectURL(blob)
-        const downloadElement = document.createElement('a')
-        downloadElement.href = href
-        downloadElement.style.display = 'none'
-        // 下载后的文件名
-        downloadElement.download = this.value
-        document.body.appendChild(downloadElement)
-        // 点击下载
-        downloadElement.click()
-        // 下载完成后移除元素
-        document.body.removeChild(downloadElement)
-        // 释放掉blob对象
-        window.URL.revokeObjectURL(href)
-      })
+        .catch(err => {
+          this.$message.error(err.message)
+        })
     }
   },
   created() {}

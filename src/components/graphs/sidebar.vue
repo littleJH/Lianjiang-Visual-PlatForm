@@ -2,6 +2,8 @@
   <div class="sidebar">
     <el-menu :index="imgList[0].index" @select="graphChange(imgList[0].index)">
       <el-popover placement="right" title="折线图" trigger="hover">
+        <p>水质基本参数均值</p>
+        <p>污染物监测指标均值</p>
         <el-divider></el-divider>
         <div class="system">
           <div>
@@ -61,7 +63,7 @@
           />
         </el-menu-item>
         <p>根据《中华人民共和国地表水环境质量标准》</p>
-        <p>对各项指标各个时间段内的水质等级进行划分，</p>
+        <p>对各项指标在一段时间内的水质等级进行划分，</p>
         <p>最后计算其时间总和。</p>
       </el-popover>
 
@@ -75,7 +77,9 @@
             :alt="imgList[2].name"
           />
         </el-menu-item>
-        <p></p>
+        <p>根据《中华人民共和国地表水环境质量标准》</p>
+        <p>对各项指标在一段时间内的水质等级进行划分，</p>
+        <p>将不同等级的水质所占时间进行相比。</p>
       </el-popover>
     </el-menu>
   </div>
@@ -274,11 +278,20 @@ export default {
       this.controller = new AbortController()
       this.config.signal = this.controller.signal
       const name = this.system === '小时制' ? this.hourName : this.monthName
+      // 是否已发送 token已过期 的讯息
+      let sendedTokenOutOfDate = false
       // 循环获取每个数据项的数据
-      this.options.forEach((option, index) => {
+      this.options.forEach(option => {
         const params = 'fields=' + option.label
         getLineData(name, this.system, params, this.config)
           .then(res => {
+            // 验证token是否过期
+            if (res.data.code === 201 && !sendedTokenOutOfDate) {
+              this.$message.warning('登录已过期，请重新登录')
+              sendedTokenOutOfDate = true
+              return
+            }
+
             let data = res.data.data.resultArr
 
             // 将表中数值为 0 的字段赋值为 ''

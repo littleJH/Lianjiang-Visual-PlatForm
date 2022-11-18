@@ -5,7 +5,7 @@
       class="el-menu-demo menu-container"
       mode="horizontal"
       background-color="#375577"
-      text-color="#909399"
+      text-color="#C0C4CC"
       active-text-color="#fff"
       router
     >
@@ -13,10 +13,11 @@
         <component :is="logStatus"></component>
       </div>
       <div class="items-container">
-        <el-menu-item index="Forecast">Forecast</el-menu-item>
-        <el-menu-item index="File">File</el-menu-item>
-        <el-menu-item index="Map">Map</el-menu-item>
-        <el-menu-item index="Graph">Graph</el-menu-item>
+        <el-menu-item index="/BackStage">后台管理</el-menu-item>
+        <el-menu-item index="/Forecast">预测</el-menu-item>
+        <el-menu-item index="/File">文件</el-menu-item>
+        <el-menu-item index="/Map">地图</el-menu-item>
+        <el-menu-item index="/Graph">图表</el-menu-item>
       </div>
     </el-menu>
   </div>
@@ -30,7 +31,7 @@ import loginTag from '@/components/header/LoginTag.vue'
 export default {
   data() {
     return {
-      activeIndex: 'Welcome',
+      activeIndex: '/Welcome',
       logStatus: 'welcomeTag'
     }
   },
@@ -48,14 +49,14 @@ export default {
         }
         if (path === '/Welcome') {
           this.logStatus = 'welcomeTag'
-          this.activeIndex = 'Welcome'
+          this.activeIndex = '/Welcome'
         }
         if (path === '/Graph') {
-          this.activeIndex = 'Graph'
+          this.activeIndex = '/Graph'
         }
         if (path === '/Login') {
           this.logStatus = 'loginTag'
-          this.activeIndex = 'Login'
+          this.activeIndex = '/Login'
         }
         if (path === '/Logout') {
           this.$router.push('/Welcome')
@@ -74,10 +75,10 @@ export default {
       localStorage.removeItem('token')
       this.logStatus = 'welcomeTag'
       this.$router.push('/Welcome')
-      this.activeIndex = 'Welcome'
+      this.activeIndex = '/Welcome'
     })
-    this.activeIndex = location.hash.slice(2)
-    if (this.activeIndex !== 'Welcome' && 'Login') {
+    this.activeIndex = location.hash.slice(1)
+    if (this.activeIndex !== '/Welcome' && '/Login') {
       this.logStatus = 'logoutTag'
     }
     console.log(this.activeIndex)

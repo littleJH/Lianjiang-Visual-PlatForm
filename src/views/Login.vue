@@ -33,7 +33,12 @@
         <el-button type="primary" @click="login">登录</el-button>
       </div>
       <!-- 忘记密码 -->
-      <el-dialog title="找回秘密" :visible.sync="verifyDialog" width="400px">
+      <el-dialog
+        title="找回秘密"
+        :visible.sync="verifyDialog"
+        width="400px"
+        :close-on-click-modal="false"
+      >
         <el-form ref="form2" :model="form2" :rules="rules2" status-icon>
           <el-form-item label="邮箱：" prop="email">
             <el-input
@@ -63,7 +68,12 @@
           >
         </div>
       </el-dialog>
-      <el-dialog title="设置新密码" :visible.sync="findDialog" width="400px">
+      <el-dialog
+        title="设置新密码"
+        :visible.sync="findDialog"
+        width="400px"
+        :close-on-click-modal="false"
+      >
         <el-form ref="form2" :model="form2" :rules="rules2" status-icon>
           <el-form-item label="系统重置密码：" prop="resetPass">
             <el-input
@@ -164,7 +174,7 @@ export default {
       },
       rules2: {
         email: [
-          { require: true, message: '请输入邮箱地址', trigger: 'blur' },
+          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           { validator: validateEmail, trigger: 'blur' }
         ],
         resetPass: [
@@ -226,7 +236,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          this.$message.error(err.message)
         })
     },
     forgotPassword() {
@@ -245,7 +255,7 @@ export default {
               }
             })
             .catch(err => {
-              console.log(err)
+              this.$message.error(err.message)
             })
         }
       })
@@ -276,16 +286,18 @@ export default {
         .then(res => {
           if (res.data.code === 200) {
             this.loading1 = false
-            this.$message.success('密码已重置，请查看邮箱')
             this.verifyDialog = false
             this.findDialog = true
+            setTimeout(() => {
+              this.$message.success('密码已重置，请查看邮箱')
+            }, 1000)
           } else {
             this.loading1 = false
             this.$message.warning(res.data.msg)
           }
         })
         .catch(err => {
-          console.log(err)
+          this.$message.error(err.message)
         })
     },
     preStep() {
@@ -311,32 +323,33 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          this.$message.error(err.message)
         })
     },
     updatePass(token) {
-      console.log(token)
       const config = {
         headers: {
-          token: token
+          Authorization: 'Bearer ' + token
         }
       }
-      const formdata2 = new FormData()
-      formdata2.append('first', this.form2.resetPass)
-      formdata2.append('second', this.form2.password)
-      updatepass(formdata2, config)
+      const data = {
+        first: this.form2.resetPass,
+        second: this.form2.password
+      }
+      updatepass(data, config)
         .then(res => {
           if (res.data.code === 200) {
-            console.log(res)
-
-            this.loading2 = false
-            this.$message.success('密码修改成功')
             this.verifyDialog = false
             this.findDialog = false
+            this.$message.success('密码修改成功')
+          } else {
+            this.$message.warning(res.data.msg)
           }
+          this.loading2 = false
         })
         .catch(err => {
-          console.log(err)
+          this.loading2 = false
+          this.$message.error(err.message)
         })
     }
   },
@@ -357,17 +370,17 @@ export default {
   position: absolute;
   top: 56px;
   width: 100%;
-  background-color: #f2f6fc;
   background-image: url('../assets/bgc2.jpg');
-  background-size: 110%;
+  background-size: 100% 100%;
   background-position: 0 0;
+  background-repeat: no-repeat;
   .login-text {
     margin-top: 10%;
     line-height: 50px;
     text-align: center;
     font-size: 40px;
     font-weight: bolder;
-    color: white;
+    color: #48889f;
     text-shadow: 2px 2px 4px #000000;
   }
   .login-container {
@@ -379,7 +392,7 @@ export default {
 
 .el-card {
   max-width: 400px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .btn {

@@ -78,7 +78,6 @@ export default {
       }
       this.file = file
       this.filelist = filelist
-      console.log(filelist)
       this.uploadFile()
       this.$refs.uploadElement.clearFiles()
     },
@@ -94,21 +93,21 @@ export default {
         }
         upload(this.system, formData, config)
           .then(res => {
-            console.log(res)
             if (res.data.code === 200) {
               this.$message.success(`${item.name} 上传成功`)
-            }
-            if (res.data.code === 400) {
+            } else if (res.data.code === 400) {
               this.$message.warning(`${item.name} ${res.data.msg}，请重新上传`)
               this.isfailToUpload = true
               this.failToUpload.push({
                 filename: item.name,
                 reason: res.data.msg
               })
+            } else {
+              this.$message.warning(res.data.msg)
             }
           })
-          .catch(error => {
-            console.log(error)
+          .catch(err => {
+            this.$message.error(err.message)
           })
       })
 

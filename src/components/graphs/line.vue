@@ -23,7 +23,10 @@ export default {
         ],
         title: {
           text: this.labelList[this.index],
-          left: 'center'
+          left: 'center',
+          textStyle: {
+            fontFamily: 'SimSun'
+          }
         },
         // 提示框组件
         tooltip: {

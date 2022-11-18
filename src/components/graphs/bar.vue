@@ -82,108 +82,162 @@ export default {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           },
           {
             type: 'bar',
             emphasis: {
               focus: 'series'
+            },
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
             }
           }
         ]

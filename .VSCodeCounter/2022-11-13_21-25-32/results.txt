@@ -1,0 +1,97 @@
+Date : 2022-11-13 21:25:32
+Directory : d:\projectCode\lianjiang
+Total : 54 files,  70281 codes, 80 comments, 217 blanks, all 70578 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JavaScript         |         16 |     44,315 |          0 |         36 |     44,351 |
+| JSON               |          2 |     22,274 |          0 |          2 |     22,276 |
+| Vue                |         32 |      3,583 |         67 |        140 |      3,790 |
+| Markdown           |          2 |         78 |          0 |         38 |        116 |
+| HTML               |          1 |         23 |          1 |          1 |         25 |
+| JSON with Comments |          1 |          8 |         12 |          0 |         20 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                             | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                |         54 |     70,281 |         80 |        217 |     70,578 |
+| public                                                           |          1 |         23 |          1 |          1 |         25 |
+| src                                                              |         46 |     47,903 |         67 |        205 |     48,175 |
+| src\api                                                          |          6 |         48 |          0 |         12 |         60 |
+| src\assets                                                       |          3 |     44,178 |          0 |         34 |     44,212 |
+| src\components                                                   |         23 |      2,267 |         62 |         90 |      2,419 |
+| src\components\backStage                                         |          5 |          0 |          0 |          5 |          5 |
+| src\components\fortcase                                          |          4 |        435 |          9 |         19 |        463 |
+| src\components\graphs                                            |          7 |      1,338 |         42 |         37 |      1,417 |
+| src\components\header                                            |          4 |        161 |          0 |         12 |        173 |
+| src\components\load                                              |          2 |        236 |         11 |          9 |        256 |
+| src\components\mapOverlay                                        |          1 |         97 |          0 |          8 |        105 |
+| src\router                                                       |          1 |         63 |          0 |          8 |         71 |
+| src\util                                                         |          2 |          7 |          0 |          5 |         12 |
+| src\views                                                        |          8 |      1,267 |          0 |         44 |      1,311 |
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                         | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\projectCode\lianjiang\.eslintrc.js                            | JavaScript         |         23 |          0 |          1 |         24 |
+| d:\projectCode\lianjiang\README.md                               | Markdown           |         19 |          0 |          6 |         25 |
+| d:\projectCode\lianjiang\babel.config.js                         | JavaScript         |         12 |          0 |          1 |         13 |
+| d:\projectCode\lianjiang\jsconfig.json                           | JSON with Comments |          8 |         12 |          0 |         20 |
+| d:\projectCode\lianjiang\package-lock.json                       | JSON               |     22,231 |          0 |          1 |     22,232 |
+| d:\projectCode\lianjiang\package.json                            | JSON               |         43 |          0 |          1 |         44 |
+| d:\projectCode\lianjiang\public\index.html                       | HTML               |         23 |          1 |          1 |         25 |
+| d:\projectCode\lianjiang\src\App.vue                             | Vue                |         49 |          5 |          6 |         60 |
+| d:\projectCode\lianjiang\src\api\file.js                         | JavaScript         |         10 |          0 |          2 |         12 |
+| d:\projectCode\lianjiang\src\api\forecast.js                     | JavaScript         |          4 |          0 |          1 |          5 |
+| d:\projectCode\lianjiang\src\api\graphs.js                       | JavaScript         |         10 |          0 |          4 |         14 |
+| d:\projectCode\lianjiang\src\api\login.js                        | JavaScript         |         13 |          0 |          2 |         15 |
+| d:\projectCode\lianjiang\src\api\map.js                          | JavaScript         |          4 |          0 |          2 |          6 |
+| d:\projectCode\lianjiang\src\api\register.js                     | JavaScript         |          7 |          0 |          1 |          8 |
+| d:\projectCode\lianjiang\src\assets\data.js                      | JavaScript         |     44,002 |          0 |          1 |     44,003 |
+| d:\projectCode\lianjiang\src\assets\level.js                     | JavaScript         |        117 |          0 |          1 |        118 |
+| d:\projectCode\lianjiang\src\assets\mdfile.md                    | Markdown           |         59 |          0 |         32 |         91 |
+| d:\projectCode\lianjiang\src\components\backStage\data.vue       | Vue                |          0 |          0 |          1 |          1 |
+| d:\projectCode\lianjiang\src\components\backStage\file.vue       | Vue                |          0 |          0 |          1 |          1 |
+| d:\projectCode\lianjiang\src\components\backStage\log.vue        | Vue                |          0 |          0 |          1 |          1 |
+| d:\projectCode\lianjiang\src\components\backStage\map.vue        | Vue                |          0 |          0 |          1 |          1 |
+| d:\projectCode\lianjiang\src\components\backStage\user.vue       | Vue                |          0 |          0 |          1 |          1 |
+| d:\projectCode\lianjiang\src\components\fortcase\form.vue        | Vue                |         59 |          0 |          5 |         64 |
+| d:\projectCode\lianjiang\src\components\fortcase\graph.vue       | Vue                |        197 |          9 |          8 |        214 |
+| d:\projectCode\lianjiang\src\components\fortcase\program1.vue    | Vue                |        102 |          0 |          3 |        105 |
+| d:\projectCode\lianjiang\src\components\fortcase\program2.vue    | Vue                |         77 |          0 |          3 |         80 |
+| d:\projectCode\lianjiang\src\components\graphs\bar.vue           | Vue                |        256 |         10 |          3 |        269 |
+| d:\projectCode\lianjiang\src\components\graphs\card.vue          | Vue                |         27 |          0 |          3 |         30 |
+| d:\projectCode\lianjiang\src\components\graphs\line.vue          | Vue                |        117 |          8 |          4 |        129 |
+| d:\projectCode\lianjiang\src\components\graphs\lines.vue         | Vue                |         64 |          0 |          3 |         67 |
+| d:\projectCode\lianjiang\src\components\graphs\pie.vue           | Vue                |        208 |          6 |          3 |        217 |
+| d:\projectCode\lianjiang\src\components\graphs\selector.vue      | Vue                |        305 |          9 |          5 |        319 |
+| d:\projectCode\lianjiang\src\components\graphs\sidebar.vue       | Vue                |        361 |          9 |         16 |        386 |
+| d:\projectCode\lianjiang\src\components\header\Header.vue        | Vue                |        125 |          0 |          3 |        128 |
+| d:\projectCode\lianjiang\src\components\header\LoginTag.vue      | Vue                |          9 |          0 |          3 |         12 |
+| d:\projectCode\lianjiang\src\components\header\LogoutTag.vue     | Vue                |         18 |          0 |          3 |         21 |
+| d:\projectCode\lianjiang\src\components\header\WelcomeTag.vue    | Vue                |          9 |          0 |          3 |         12 |
+| d:\projectCode\lianjiang\src\components\load\DownLoad.vue        | Vue                |         90 |          6 |          4 |        100 |
+| d:\projectCode\lianjiang\src\components\load\UpLoad.vue          | Vue                |        146 |          5 |          5 |        156 |
+| d:\projectCode\lianjiang\src\components\mapOverlay\MyOverlay.vue | Vue                |         97 |          0 |          8 |        105 |
+| d:\projectCode\lianjiang\src\main.js                             | JavaScript         |         19 |          0 |          3 |         22 |
+| d:\projectCode\lianjiang\src\router\index.js                     | JavaScript         |         63 |          0 |          8 |         71 |
+| d:\projectCode\lianjiang\src\store.js                            | JavaScript         |          5 |          0 |          3 |          8 |
+| d:\projectCode\lianjiang\src\util\eventBus.js                    | JavaScript         |          2 |          0 |          2 |          4 |
+| d:\projectCode\lianjiang\src\util\request.js                     | JavaScript         |          5 |          0 |          3 |          8 |
+| d:\projectCode\lianjiang\src\views\BackStage.vue                 | Vue                |         48 |          0 |          4 |         52 |
+| d:\projectCode\lianjiang\src\views\File.vue                      | Vue                |         74 |          0 |          3 |         77 |
+| d:\projectCode\lianjiang\src\views\Forecast.vue                  | Vue                |         29 |          0 |          3 |         32 |
+| d:\projectCode\lianjiang\src\views\Graph.vue                     | Vue                |         54 |          0 |          3 |         57 |
+| d:\projectCode\lianjiang\src\views\Login.vue                     | Vue                |        424 |          0 |         12 |        436 |
+| d:\projectCode\lianjiang\src\views\Map.vue                       | Vue                |        237 |          0 |          4 |        241 |
+| d:\projectCode\lianjiang\src\views\Register.vue                  | Vue                |        268 |          0 |          5 |        273 |
+| d:\projectCode\lianjiang\src\views\Welcome.vue                   | Vue                |        133 |          0 |         10 |        143 |
+| d:\projectCode\lianjiang\vue.config.js                           | JavaScript         |         19 |          0 |          1 |         20 |
+| Total                                                            |                    |     70,281 |         80 |        217 |     70,578 |
++------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

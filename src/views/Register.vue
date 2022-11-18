@@ -181,7 +181,7 @@ export default {
               }
             })
             .catch(err => {
-              console.log(err)
+              this.$message.error(err.message)
             })
         }
       })
@@ -206,7 +206,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          this.$message.error(err.message)
         })
     },
     setTime() {
@@ -240,8 +240,9 @@ export default {
   align-items: center;
   background-color: #f2f6fc;
   background-image: url('../assets/bgc2.jpg');
-  background-size: 110%;
+  background-size: 100% 100%;
   background-position: 0 0;
+  background-repeat: no-repeat;
 }
 .login-text {
   margin-top: 5%;
@@ -249,12 +250,12 @@ export default {
   text-align: center;
   font-size: 40px;
   font-weight: bolder;
-  color: white;
+  color: #48889f;
   text-shadow: 2px 2px 4px #000000;
 }
 .el-card {
   width: 400px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .submit {
   display: flex;

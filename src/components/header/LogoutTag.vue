@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-menu-item index="Logout" @click="logOut" style="width: 110px"
+    <el-menu-item index="/Logout" @click="logOut" style="width: 110px"
       >Log Out</el-menu-item
     >
   </div>

@@ -31,6 +31,15 @@ export default {
             type: 'shadow'
           }
         },
+        title: {
+          text: '监测范围内各项指标不同水质等级所占天数',
+          left: 'center',
+          top: '3%',
+          textStyle: {
+            fontFamily: 'SimSun',
+            fontSize: '32'
+          }
+        },
         // 图例组件。通过点击图例组件控制某个系列的显示与否
         legend: {
           left: '10%',
@@ -263,6 +272,5 @@ export default {
 <style lang="less" scoped>
 .container {
   width: 100%;
-  height: 500px;
 }
 </style>

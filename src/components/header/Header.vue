@@ -27,7 +27,6 @@
 import bus from '../../util/eventBus'
 import logoutTag from '@/components/header/LogoutTag'
 import welcomeTag from '@/components/header/WelcomeTag'
-import loginTag from '@/components/header/LoginTag.vue'
 export default {
   data() {
     return {
@@ -53,10 +52,6 @@ export default {
         }
         if (path === '/Graph') {
           this.activeIndex = '/Graph'
-        }
-        if (path === '/Login') {
-          this.logStatus = 'loginTag'
-          this.activeIndex = '/Login'
         }
         if (path === '/Logout') {
           this.$router.push('/Welcome')
@@ -85,8 +80,7 @@ export default {
   },
   components: {
     logoutTag,
-    welcomeTag,
-    loginTag
+    welcomeTag
   }
 }
 </script>

@@ -6,6 +6,8 @@
     element-loading-text="数据量较大，请耐心等待"
     :style="`width: ${containerWidth}px`"
   >
+    <h1>监测范围内水质基本参数均值&污染物监测指标均值</h1>
+    <el-divider></el-divider>
     <LineGraph
       v-for="(item, index) in lineData"
       :key="index"
@@ -59,6 +61,9 @@ export default {
 
 <style lang="less" scoped>
 .container {
+  h1 {
+    text-align: center;
+  }
   height: 300px;
   margin-top: 20px;
   z-index: 99;

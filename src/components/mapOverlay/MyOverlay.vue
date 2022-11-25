@@ -10,6 +10,9 @@
       <div class="text item">总磷：{{ phosphorus }}</div>
       <div class="text item">溶解氧：{{ dissolvedOxygen }}</div>
 
+      <el-divider></el-divider>
+      <el-button type="primary" size="small">查看断面数据详情</el-button>
+
       <div slot="reference">
         <div :class="{ sample: true, active: active }">
           {{ level }}
@@ -91,7 +94,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .overlay {
   width: 100px;
   height: 80px;
@@ -132,5 +135,9 @@ export default {
   font-size: 18px;
   font-weight: 700;
   color: rgb(255, 0, 0);
+}
+
+.el-button {
+  width: 100%;
 }
 </style>

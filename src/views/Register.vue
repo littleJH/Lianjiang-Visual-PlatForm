@@ -155,13 +155,6 @@ export default {
             message: '昵称长度在20位以内',
             trigger: 'blur'
           }
-        ],
-        verify: [
-          {
-            required: true,
-            message: '请输入验证码',
-            trigger: 'blur'
-          }
         ]
       }
     }
@@ -195,7 +188,6 @@ export default {
 
       submit(formData)
         .then(res => {
-          console.log(res)
           this.submitStatus = res.data.code
           if (this.submitStatus === 200) {
             Vue.prototype.$token = res.data.data.token

@@ -68,8 +68,6 @@ export default {
       containerHeight: window.innerHeight - 57
     }
   },
-
-  methods: {},
   watch: {
     btnLabel(newVal) {
       newVal === '标准地图'

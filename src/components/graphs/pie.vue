@@ -2,6 +2,7 @@
   <div class="container">
     <div class="left">
       <div class="select">
+        <span>监测范围内</span>
         <el-select v-model="selectValue" @change="optionChange">
           <el-option
             v-for="item in options"
@@ -10,6 +11,7 @@
             :value="item"
           ></el-option>
         </el-select>
+        <span>的各水质等级所占时间的比例</span>
       </div>
       <div
         class="pieGraph"
@@ -209,6 +211,13 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  span {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    font-weight: 700;
+    margin: 0 12px;
+  }
 }
 .pieGraph {
   width: 100%;

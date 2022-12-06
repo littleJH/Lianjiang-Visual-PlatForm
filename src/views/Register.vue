@@ -1,5 +1,5 @@
 <template>
-  <div class=".re-container" :style="'height: ' + containerHeight + 'px;'">
+  <div class="re-container" :style="'height: ' + containerHeight + 'px;'">
     <h2 class="login-text">REGISTER</h2>
     <el-card class="box-card">
       <el-form

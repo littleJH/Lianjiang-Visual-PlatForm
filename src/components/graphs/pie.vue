@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <div class="left">
+  <div class="container" :class="{ flex: showMd }">
+    <div :class="{ left: showMd, container: !showMd }">
       <div class="select">
         <span>监测范围内</span>
-        <el-select v-model="selectValue" @change="optionChange">
+        <el-select v-model="selectValue" @change="optionChange" size="small">
           <el-option
             v-for="item in options"
             :key="item"
@@ -16,10 +16,16 @@
       <div
         class="pieGraph"
         ref="pieGraph"
-        :style="`height: ${graphHeight}px;`"
+        :style="`height: ${graphHeight};`"
       ></div>
     </div>
-    <div class="right markdown-body" :style="`height: ${cardHeight}px`">
+
+    <div
+      v-if="showMd"
+      class="markdown-body"
+      :class="{ right: showMd }"
+      :style="`height: ${cardHeight}`"
+    >
       <mdfile></mdfile>
     </div>
   </div>
@@ -29,10 +35,14 @@
 import { arr } from '@/assets/level'
 import mdfile from '@/assets/mdfile.md'
 export default {
+  props: {
+    pattern: {
+      require: true,
+      type: String
+    }
+  },
   data() {
     return {
-      graphHeight: (window.innerHeight - 57) * 0.9,
-      cardHeight: window.innerHeight - 93 - 20,
       data: arr,
       selectValue: '浊度',
       options: [
@@ -59,6 +69,23 @@ export default {
       ]
     }
   },
+  computed: {
+    graphHeight() {
+      return this.pattern === 'overview'
+        ? '100%'
+        : `${(window.innerHeight - 57) * 0.9}px`
+    },
+    cardHeight() {
+      return this.pattern === 'overview'
+        ? '100%'
+        : `${window.innerHeight - 93 - 20}px`
+    },
+    showMd() {
+      let bool = false
+      this.pattern === 'overview' ? (bool = false) : (bool = true)
+      return bool
+    }
+  },
   methods: {
     draw() {
       const graph = this.$refs.pieGraph
@@ -70,8 +97,8 @@ export default {
         },
         // 图例组件。通过点击图例组件控制某个系列的显示与否
         legend: {
-          left: 'center',
-          bottom: '10%',
+          right: 'center',
+          bottom: '15%',
           // 如果series 对象有name 值，则 legend可以不用写data
           // 修改图例组件 文字颜色
           textStyle: {
@@ -80,12 +107,10 @@ export default {
           }
         },
         grid: {
-          left: '10%',
-          right: '3%',
-          bottom: '15%',
-          show: false, // 显示边框
-          borderColor: '#012f4a', // 边框颜色
-          containLabel: true // 包含刻度文字在内
+          left: '5%',
+          right: '5%',
+          bottom: '5%',
+          top: '15%'
         },
         // 工具栏
         toolbox: {
@@ -101,13 +126,13 @@ export default {
         series: [
           {
             type: 'pie',
-            radius: [20, 140],
+            radius: [20, 100],
             center: ['50%', '40%'],
             itemStyle: {
               borderRadius: 5
             },
             label: {
-              show: true,
+              show: this.showMd,
               formatter: params => {
                 const str =
                   ' {b|' +
@@ -127,9 +152,9 @@ export default {
               rich: {
                 b: {
                   color: '#4C5058',
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: 'bold',
-                  lineHeight: 33,
+                  lineHeight: 20,
                   align: 'center'
                 },
                 hr: {
@@ -149,9 +174,9 @@ export default {
             labelLine: {
               show: true,
               showAbove: true,
-              length: 40,
-              length2: 40,
-              smooth: true
+              smooth: true,
+              length: 50,
+              length2: 50
             },
             emphasis: {
               label: {
@@ -193,8 +218,13 @@ export default {
 <style lang="less" scoped>
 .container {
   width: 100%;
+  height: 100%;
+}
+
+.flex {
   display: flex;
 }
+
 .left {
   width: 60%;
 }
@@ -210,13 +240,12 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  padding-top: 30px;
   span {
     display: inline-block;
-    height: 40px;
-    line-height: 40px;
+    height: 30px;
+    line-height: 30px;
     font-weight: 700;
-    margin: 0 12px;
   }
 }
 .pieGraph {

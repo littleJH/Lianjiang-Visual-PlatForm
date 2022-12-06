@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :style="'height: ' + containerHeight + 'px;'">
+  <div class=".re-container" :style="'height: ' + containerHeight + 'px;'">
     <h2 class="login-text">REGISTER</h2>
     <el-card class="box-card">
       <el-form
@@ -223,7 +223,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.container {
+.re-container {
   position: absolute;
   top: 56px;
   width: 100%;
@@ -235,30 +235,30 @@ export default {
   background-size: 100% 100%;
   background-position: 0 0;
   background-repeat: no-repeat;
-}
-.login-text {
-  margin-top: 5%;
-  line-height: 50px;
-  text-align: center;
-  font-size: 40px;
-  font-weight: bolder;
-  color: #48889f;
-  text-shadow: 2px 2px 4px #000000;
-}
-.el-card {
-  width: 400px;
-  background-color: rgba(255, 255, 255, 0.7);
-}
-.submit {
-  display: flex;
-  justify-content: center;
-}
-.verifyButton {
-  width: 100%;
-  height: 40px;
-  margin-top: 10px;
-  .el-button {
-    float: right;
+  .login-text {
+    margin-top: 5%;
+    line-height: 50px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    color: #48889f;
+    text-shadow: 2px 2px 4px #000000;
+  }
+  .el-card {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  .submit {
+    display: flex;
+    justify-content: center;
+  }
+  .verifyButton {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    .el-button {
+      float: right;
+    }
   }
 }
 </style>

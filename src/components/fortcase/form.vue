@@ -1,5 +1,5 @@
 <template>
-  <el-card class="box-card" :style="`height: ${cardHeight}px`">
+  <div class="form-container">
     <div class="btn-container">
       <el-button-group>
         <el-button :type="btnType" @click="btn1Click">程序 1</el-button>
@@ -7,8 +7,10 @@
       </el-button-group>
     </div>
 
-    <component :is="program"></component>
-  </el-card>
+    <div class="program">
+      <component :is="program"></component>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -17,16 +19,10 @@ import Program2 from '@/components/fortcase/program2.vue'
 export default {
   data() {
     return {
-      cardHeight: window.innerHeight - 95,
       program: 'Program1',
       btnType: 'primary',
       btnType2: ''
     }
-  },
-  created() {
-    window.addEventListener('resize', () => {
-      this.cardHeight = window.innerHeight - 95
-    })
   },
   methods: {
     btn1Click() {
@@ -48,16 +44,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.el-card {
-  width: 25%;
-  float: right;
-  margin: 18px;
-  padding: 0 40px;
+.form-container {
+  width: 40%;
+  height: 100%;
   overflow: auto;
-}
-
-.btn-container {
-  width: 100%;
-  display: flex;
+  border: 1px solid #ccc;
+  .btn-container {
+    width: 90%;
+    display: flex;
+    padding: 30px 0 0 30px;
+  }
+  .program {
+    width: 80%;
+    height: 100%;
+    padding: 30px;
+  }
 }
 </style>

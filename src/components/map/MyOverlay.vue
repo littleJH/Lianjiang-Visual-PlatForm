@@ -11,7 +11,9 @@
       <div class="text item">溶解氧：{{ dissolvedOxygen }}</div>
 
       <el-divider></el-divider>
-      <el-button type="primary" size="small">查看断面数据详情</el-button>
+      <el-button type="primary" size="small" @click="getDetails"
+        >查看断面数据详情</el-button
+      >
 
       <div slot="reference">
         <div :class="{ sample: true, active: active }">
@@ -26,11 +28,13 @@
 </template>
 
 <script>
+import bus from '@/util/eventBus'
 export default {
   props: [
     'text',
     'lng',
     'lat',
+    'system',
     'active',
     'site',
     'pH',
@@ -49,7 +53,6 @@ export default {
     name() {
       return this.site.slice(3)
     },
-
     level() {
       let level = ''
       switch (this.waterQuulity) {
@@ -72,6 +75,29 @@ export default {
           break
       }
       return level
+    },
+    color() {
+      let color = ''
+      switch (this.waterQuulity) {
+        case 1:
+          color = '#10B981'
+          break
+        case 2:
+          color = '#3B82F6'
+          break
+        case 3:
+          color = '#8B5CF6'
+          break
+        case 4:
+          color = '#F59E0B'
+          break
+        case 5:
+          color = '#EF4444'
+          break
+        default:
+          break
+      }
+      return color
     }
   },
   watch: {
@@ -83,6 +109,15 @@ export default {
     }
   },
   methods: {
+    getDetails() {
+      if (this.$route.path === '/map') {
+        this.$router.push('/overview')
+      }
+      bus.$emit('siteChange', {
+        system: this.system,
+        siteName: this.name
+      })
+    },
     draw({ el, BMap, map }) {
       const lng = this.lng
       const lat = this.lat
@@ -104,20 +139,23 @@ export default {
   justify-content: center;
 }
 .sample {
+  position: relative;
   width: 40px;
   height: 40px;
   border-radius: 40px;
   box-shadow: 0 0 2px rgb(0, 0, 0);
   line-height: 40px;
-  background: rgba(255, 0, 0, 0.75);
+  background: v-bind(color);
   color: #fff;
   text-align: center;
   margin-left: 30px;
+  z-index: 9;
 }
 
-.sample.active {
-  background: rgba(0, 0, 0, 1);
+.active {
+  background: #ef4444;
   color: #fff;
+  z-index: 999;
 }
 
 .text {
@@ -132,9 +170,9 @@ export default {
   width: 100%;
   text-align: center;
   line-height: 40px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-  color: rgb(255, 0, 0);
+  color: #374151;
 }
 
 .el-button {

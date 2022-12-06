@@ -4,9 +4,9 @@
     ref="lines"
     v-loading="loading"
     element-loading-text="数据量较大，请耐心等待"
-    :style="`width: ${containerWidth}px`"
+    :style="`width: ${containerWidth}`"
   >
-    <h1>监测范围内水质基本参数均值&污染物监测指标均值</h1>
+    <h3>监测范围内水质基本参数均值&污染物监测指标均值</h3>
     <el-divider></el-divider>
     <LineGraph
       v-for="(item, index) in lineData"
@@ -25,14 +25,34 @@
 import LineGraph from '@/components/graphs/line.vue'
 import bus from '@/util/eventBus'
 export default {
+  props: {
+    pattern: {
+      require: true,
+      type: String
+    }
+  },
   data() {
     return {
-      containerHeight: window.innerHeight - 57,
       lineData: [],
       indexOfTime: '',
       labelList: [],
-      loading: true,
-      containerWidth: window.innerWidth - 10
+      loading: true
+    }
+  },
+  computed: {
+    containerHeight() {
+      if (this.pattern === 'overview') {
+        return '100%'
+      } else {
+        return `${window.innerHeight - 57}px`
+      }
+    },
+    containerWidth() {
+      if (this.pattern === 'overview') {
+        return '100%'
+      } else {
+        return `${window.innerWidth - 10}px`
+      }
     }
   },
   components: {
@@ -61,7 +81,7 @@ export default {
 
 <style lang="less" scoped>
 .container {
-  h1 {
+  h3 {
     text-align: center;
   }
   height: 300px;

@@ -1,11 +1,5 @@
 <template>
-  <el-card class="box-card" :style="`height: ${cardHeight}px`">
-    <div
-      ref="lineGraph"
-      class="line-container"
-      :style="`height: ${cardHeight - 80}px;`"
-    ></div>
-  </el-card>
+  <div ref="lineGraph" class="line-container"></div>
 </template>
 
 <script>
@@ -191,23 +185,13 @@ export default {
   mounted() {
     this.processData()
     this.draw()
-  },
-  created() {
-    window.addEventListener('resize', () => {
-      this.cardHeight = window.innerHeight - 95
-    })
   }
 }
 </script>
 
 <style lang="less" scoped>
-.el-card {
-  width: 75%;
-  float: left;
-  margin: 18px;
-  overflow: auto;
-}
 .line-container {
-  width: 100%;
+  width: 60%;
+  height: 100%;
 }
 </style>

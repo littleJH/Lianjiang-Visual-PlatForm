@@ -97,7 +97,6 @@ export default {
         start: '',
         end: ''
       },
-      accuracyValue: '小时制',
       nameList: [],
       hourName: '海门湾桥闸',
       monthName: '北港河闸',

@@ -1,18 +1,28 @@
 <template>
-  <div
-    class="container"
-    ref="barGraph"
-    :style="`height: ${graphHeight}px;`"
-  ></div>
+  <div class="container">
+    <div ref="barGraph" :style="`height: ${graphHeight}; width: 100%`"></div>
+  </div>
 </template>
 
 <script>
 import { arr } from '@/assets/level'
 export default {
+  props: {
+    pattern: {
+      require: true,
+      type: String
+    }
+  },
   data() {
     return {
-      graphHeight: window.innerHeight - 93,
       data: arr
+    }
+  },
+  computed: {
+    graphHeight() {
+      return this.pattern === 'overview'
+        ? '100%'
+        : `${window.innerHeight - 93}px`
     }
   },
   methods: {
@@ -37,25 +47,26 @@ export default {
           top: '3%',
           textStyle: {
             fontFamily: 'SimSun',
-            fontSize: '32'
+            fontSize: '14'
           }
         },
         // 图例组件。通过点击图例组件控制某个系列的显示与否
         legend: {
-          left: '10%',
-          right: '3%',
+          type: 'scroll',
+          // orient: 'vertical',
+          left: 'center',
           bottom: '3%',
           // 如果series 对象有name 值，则 legend可以不用写data
           // 修改图例组件 文字颜色
           textStyle: {
             color: '#4c9bfd',
-            fontSize: 14
+            fontSize: 10
           }
         },
         grid: {
-          top: '10%',
-          left: '10%',
-          right: '3%',
+          top: '3%',
+          left: '0',
+          right: '0',
           bottom: '15%',
           show: false, // 显示边框
           borderColor: '#012f4a', // 边框颜色
@@ -271,6 +282,9 @@ export default {
 
 <style lang="less" scoped>
 .container {
+  height: 100%;
   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 </style>

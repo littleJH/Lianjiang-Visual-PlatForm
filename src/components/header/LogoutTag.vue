@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu-item index="/Logout" @click="logOut" style="width: 110px"
-      >Log Out</el-menu-item
+      >退出登录</el-menu-item
     >
   </div>
 </template>

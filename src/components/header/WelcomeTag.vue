@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-menu-item index="/Welcome" style="width: 120px">WELCOME</el-menu-item>
+    <el-menu-item index="/Welcome" style="width: 120px">欢迎</el-menu-item>
   </div>
 </template>
 

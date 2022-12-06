@@ -14,7 +14,7 @@ import bus from '@/util/eventBus'
 export default {
   data() {
     return {
-      needAlive: 'my-graph'
+      needAlive: ['my-graph', 'my-overview']
     }
   },
   components: {

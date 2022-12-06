@@ -13,11 +13,10 @@
         <component :is="logStatus"></component>
       </div>
       <div class="items-container">
-        <el-menu-item index="/BackStage">后台管理</el-menu-item>
-        <el-menu-item index="/Forecast">预测</el-menu-item>
-        <el-menu-item index="/File">文件</el-menu-item>
-        <el-menu-item index="/Map">地图</el-menu-item>
-        <el-menu-item index="/Graph">图表</el-menu-item>
+        <el-menu-item index="/backStage">后台管理</el-menu-item>
+        <el-menu-item index="/file">文件</el-menu-item>
+        <el-menu-item index="/graph">图表</el-menu-item>
+        <el-menu-item index="/overview">首页</el-menu-item>
       </div>
     </el-menu>
   </div>
@@ -30,7 +29,7 @@ import welcomeTag from '@/components/header/WelcomeTag'
 export default {
   data() {
     return {
-      activeIndex: '/Welcome',
+      activeIndex: '/welcome',
       logStatus: 'welcomeTag'
     }
   },
@@ -38,23 +37,18 @@ export default {
     $route: {
       handler(newVal) {
         const path = newVal.path
-        if (
-          path === '/Graph' ||
-          path === '/Map' ||
-          path === '/File' ||
-          path === '/Forecast'
-        ) {
+        if (path === '/graph' || path === '/file' || path === '/overview') {
           this.logStatus = 'logoutTag'
         }
-        if (path === '/Welcome') {
+        if (path === '/welcome') {
           this.logStatus = 'welcomeTag'
-          this.activeIndex = '/Welcome'
+          this.activeIndex = '/welcome'
         }
-        if (path === '/Graph') {
-          this.activeIndex = '/Graph'
+        if (path === '/overview') {
+          this.activeIndex = '/overview'
         }
-        if (path === '/Logout') {
-          this.$router.push('/Welcome')
+        if (path === '/logout') {
+          this.$router.push('/welcome')
         }
       }
     }

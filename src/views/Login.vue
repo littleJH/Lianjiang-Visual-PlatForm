@@ -226,9 +226,9 @@ export default {
             this.$message.success(data.msg)
             this.token = data.data.token
             localStorage.setItem('token', data.data.token)
-            this.$router.push('/Graph')
+            this.$router.push('/overview')
             bus.$emit('activeIndexChange', {
-              item: 'Graph',
+              item: 'overview',
               isLogin: true
             })
           } else {

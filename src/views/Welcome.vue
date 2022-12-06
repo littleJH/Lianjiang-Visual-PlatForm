@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :style="'height: ' + containerHeight + 'px;'">
+  <div class="welcome-container" :style="'height: ' + containerHeight + 'px;'">
     <div class="title">
       <h1>练江可视化平台</h1>
       <el-divider></el-divider>
@@ -36,6 +36,11 @@
         </el-col>
       </el-row>
     </div>
+    <div class="icp-container">
+      <p>粤ICP备2021079778号</p>
+      <p>粤ICP备2021079778号-1</p>
+      <p>@CopyRight STU-ACM</p>
+    </div>
   </div>
 </template>
 
@@ -50,9 +55,9 @@ export default {
   methods: {
     enterInto() {
       if (localStorage.getItem('token')) {
-        this.$router.push('/Graph')
+        this.$router.push('/overview')
       } else {
-        this.$router.push('/Login')
+        this.$router.push('/login')
         console.log('enter into login')
       }
     }
@@ -72,7 +77,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.container {
+.welcome-container {
   position: absolute;
   top: 56px;
   width: 100%;
@@ -82,61 +87,75 @@ export default {
   background-position: 0 0;
   background-repeat: no-repeat;
   overflow: auto;
-}
 
-.title {
-  color: #48889f;
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  z-index: 9;
-  .el-button {
-    width: 100px;
+  .title {
+    color: #48889f;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    z-index: 9;
+    .el-button {
+      width: 100px;
+    }
   }
-}
 
-.row1 {
-  color: #48889f;
+  .row1 {
+    color: #48889f;
 
-  margin-top: 40px;
-}
-.row2 {
-  color: #fff;
-}
-.row3 {
-  color: #fff;
+    margin-top: 40px;
+  }
+  .row2 {
+    color: #fff;
+  }
+  .row3 {
+    color: #fff;
 
-  margin-bottom: 40px;
-}
-.leftImg {
-  display: flex;
-  align-items: flex-end;
-}
+    margin-bottom: 40px;
+  }
+  .leftImg {
+    display: flex;
+    align-items: flex-end;
+  }
 
-.rightImg {
-  display: flex;
-  align-items: flex-start;
-}
+  .rightImg {
+    display: flex;
+    align-items: flex-start;
+  }
 
-.el-col {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  .el-col {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-img {
-  height: auto;
-  width: 50%;
-  box-shadow: 0 0 5px #5b5353, 0 0 5px #ffffff;
-  margin: 0 10%;
-}
-.el-divider {
-  margin: 40px 0;
-  background-color: #48889f;
-}
-.el-button {
-  background-color: #48889f;
-  color: #fff;
+  img {
+    height: auto;
+    width: 50%;
+    box-shadow: 0 0 5px #5b5353, 0 0 5px #ffffff;
+    margin: 0 10%;
+  }
+  .el-divider {
+    margin: 40px 0;
+    background-color: #48889f;
+  }
+  .el-button {
+    background-color: #48889f;
+    color: #fff;
+  }
+
+  .icp-container {
+    height: 40px;
+    background-color: rgb(0 0 0 / 0);
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+    p {
+      height: 100%;
+      line-height: 100%;
+      text-align: center;
+      margin: 0 10px;
+    }
+  }
 }
 </style>

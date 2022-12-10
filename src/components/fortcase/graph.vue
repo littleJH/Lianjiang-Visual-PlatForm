@@ -4,12 +4,14 @@
 
 <script>
 import { arr } from '@/assets/data'
+import bus from '@/util/eventBus'
 export default {
   data() {
     return {
       cardHeight: window.innerHeight - 95,
       data: arr,
-      legend: ['水温', 'pH', '溶解氧', '浊度', '电导率', '氨氮', 'CODcr']
+      legend: ['水温', 'pH', '溶解氧', '浊度', '电导率', '氨氮', 'CODcr'],
+      myChart: null
     }
   },
   methods: {
@@ -23,9 +25,42 @@ export default {
         return item
       })
     },
-    draw() {
+    buildSeries() {
+      const series = []
+      this.legend.forEach((_, index) => {
+        series.push({
+          type: 'line',
+          symbol: 'none',
+          smooth: true,
+          sampling: 'lttb',
+          lineStyle: {
+            width: 1
+          },
+          name: this.legend[index],
+          encode: {
+            x: 0,
+            y: index + 1
+          },
+          markLine: {
+            label: {
+              position: 'middle'
+            },
+            lineStyle: {
+              type: 'solid'
+            },
+            data: [
+              {
+                xAxis: arr[arr.length - 1].时间
+              }
+            ]
+          }
+        })
+      })
+      return series
+    },
+    draw(series) {
       const graph = this.$refs.lineGraph
-      const myChart = this.$echarts.init(graph)
+      this.myChart = this.$echarts.init(graph)
       const options = {
         dataset: {
           source: this.data
@@ -36,8 +71,9 @@ export default {
           trigger: 'axis'
         },
         legend: {
+          type: 'scroll',
           left: 'center',
-          top: '2%',
+          bottom: '15%',
           // 如果series 对象有name 值，则 legend可以不用写data
           // 修改图例组件 文字颜色
           textStyle: {
@@ -46,10 +82,10 @@ export default {
           }
         },
         grid: {
-          top: '10%',
-          left: '3%',
-          right: '4%',
-          bottom: '10%',
+          top: '5%',
+          left: '1%',
+          right: '8%',
+          bottom: '25%',
           show: false, // 显示边框
           borderColor: '#012f4a', // 边框颜色
           containLabel: true // 包含刻度文字在内
@@ -78,120 +114,55 @@ export default {
             end: 100
           },
           {
-            height: '20',
+            height: '10',
             start: 0,
             end: 100
           }
         ],
-        series: [
-          {
-            type: 'line',
-            symbol: 'none',
-            smooth: true,
-            sampling: 'lttb',
-            lineStyle: {
-              width: 1
-            },
-            name: this.legend[0],
-            encode: {
-              x: 0,
-              y: 1
-            }
-          },
-          {
-            type: 'line',
-            symbol: 'none',
-            smooth: true,
-
-            sampling: 'lttb',
-            lineStyle: {
-              width: 1
-            },
-            name: this.legend[1],
-            encode: {
-              x: 0,
-              y: 2
-            }
-          },
-          {
-            type: 'line',
-            symbol: 'none',
-            smooth: true,
-
-            sampling: 'lttb',
-            lineStyle: {
-              width: 1
-            },
-            name: this.legend[2],
-            encode: {
-              x: 0,
-              y: 3
-            }
-          },
-          {
-            type: 'line',
-            symbol: 'none',
-            smooth: true,
-
-            sampling: 'lttb',
-            lineStyle: {
-              width: 1
-            },
-            name: this.legend[3],
-            encode: {
-              x: 0,
-              y: 4
-            }
-          },
-          {
-            type: 'line',
-            symbol: 'none',
-            smooth: true,
-
-            sampling: 'lttb',
-            lineStyle: {
-              width: 1
-            },
-            name: this.legend[4],
-            encode: {
-              x: 0,
-              y: 5
-            }
-          },
-          {
-            type: 'line',
-            symbol: 'none',
-            smooth: true,
-
-            sampling: 'lttb',
-            lineStyle: {
-              width: 1
-            },
-            name: this.legend[5],
-            encode: {
-              x: 0,
-              y: 6
-            }
-          }
-        ]
+        series: series
       }
-      myChart.setOption(options)
+      this.myChart.setOption(options)
       // 当浏览器窗口缩放时，图标同时缩放
       window.addEventListener('resize', () => {
-        myChart.resize()
+        this.myChart.resize()
       })
     }
   },
+  created() {
+    bus.$on('showLoading', () => {
+      this.myChart.showLoading()
+    })
+    bus.$on('dataChange', val => {
+      this.data = this.data.concat(val.dataset)
+      this.myChart.hideLoading()
+      this.myChart.setOption({
+        dataset: {
+          source: this.data
+        }
+      })
+    })
+    bus.$on('empty', () => {
+      this.data = arr
+      this.myChart.setOption({
+        dataset: {
+          source: this.data
+        }
+      })
+    })
+  },
   mounted() {
     this.processData()
-    this.draw()
+    this.draw(this.buildSeries())
+    bus.$emit('listMsg', {
+      lastDate: this.lastDate
+    })
   }
 }
 </script>
 
 <style lang="less" scoped>
 .line-container {
-  width: 60%;
+  width: 70%;
   height: 100%;
 }
 </style>

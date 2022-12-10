@@ -155,49 +155,49 @@ export default {
       })
       const last = params.lastIndexOf('&')
       params = params.slice(0, last)
-      console.log(params)
 
-      getLineData(name, this.system, params, this.config).then(res => {
-        console.log(res)
-        // 验证token是否过期
-        if (res.data.code === 201) {
-          this.$message.warning('登录已过期，请重新登录')
-          return
-        }
+      getLineData(name, this.system, params, this.config)
+        .then(res => {
+          // 验证token是否过期
+          if (res.data.code === 201) {
+            this.$message.warning('登录已过期，请重新登录')
+            this.$router.push('/login')
+            return
+          }
 
-        if (res.data.code === 400) {
-          this.$message.warning('数据缺失')
-          this.myChart.hideLoading()
-        }
+          if (res.data.code === 400) {
+            this.$message.warning('数据缺失')
+            this.myChart.hideLoading()
+          }
 
-        if (res.data.code === 200) {
-          this.$message.success('数据获取成功')
-        }
+          let data = res.data.data.resultArr
 
-        let data = res.data.data.resultArr
+          // 将表中数值为 0 的字段赋值为 ''
+          data = data.map(item => {
+            Object.keys(item).forEach(key => {
+              if (item[key] <= 0) {
+                item[key] = ''
+              }
+            })
+            return item
+          })
 
-        // 将表中数值为 0 的字段赋值为 ''
-        data = data.map(item => {
-          Object.keys(item).forEach(key => {
-            if (item[key] <= 0) {
-              item[key] = ''
+          this.lineData = data
+
+          // 计算 data 中 time 字段的索引
+          Object.keys(data[0]).forEach((item, index) => {
+            if (item === 'time') {
+              this.indexOfTime = index
             }
           })
-          return item
+
+          this.myChart.hideLoading()
+          this.draw(this.buildSeries(), this.buildSelected())
         })
-
-        this.lineData = data
-
-        // 计算 data 中 time 字段的索引
-        Object.keys(data[0]).forEach((item, index) => {
-          if (item === 'time') {
-            this.indexOfTime = index
-          }
+        .catch(err => {
+          console.log(err)
+          this.$message.error(err.message)
         })
-
-        this.myChart.hideLoading()
-        this.draw(this.buildSeries(), this.buildSelected())
-      })
     },
     initChart() {
       this.graph = this.$refs.liness
@@ -245,7 +245,6 @@ export default {
           selected[label] = true
         }
       })
-      console.log(selected)
       return selected
     },
     draw(series, selected) {
@@ -274,15 +273,15 @@ export default {
           // }
           selected: selected
         },
-        title: {
-          text: '监测范围内水质基本参数均值&污染物监测指标均值',
-          left: 'center',
-          top: '3%',
-          textStyle: {
-            fontFamily: 'SimSun',
-            fontSize: '14'
-          }
-        },
+        // title: {
+        //   text: '监测范围内水质基本参数均值&污染物监测指标均值',
+        //   left: 'center',
+        //   top: '3%',
+        //   textStyle: {
+        //     fontFamily: 'SimSun',
+        //     fontSize: '14'
+        //   }
+        // },
         // 提示框组件
         tooltip: {
           // 触发类型：坐标轴触发

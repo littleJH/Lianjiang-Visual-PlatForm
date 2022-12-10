@@ -2,8 +2,8 @@
   <div class="form-container">
     <div class="btn-container">
       <el-button-group>
-        <el-button :type="btnType" @click="btn1Click">程序 1</el-button>
-        <el-button :type="btnType2" @click="btn2Click">程序 2</el-button>
+        <el-button :type="btnType" @click="btn1Click">预测 1</el-button>
+        <el-button :type="btnType2" @click="btn2Click">预测 2</el-button>
       </el-button-group>
     </div>
 
@@ -45,7 +45,7 @@ export default {
 
 <style lang="less" scoped>
 .form-container {
-  width: 40%;
+  width: 30%;
   height: 100%;
   overflow: auto;
   border: 1px solid #ccc;

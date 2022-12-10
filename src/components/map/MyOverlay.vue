@@ -83,13 +83,13 @@ export default {
           color = '#10B981'
           break
         case 2:
-          color = '#3B82F6'
+          color = '#10B981'
           break
         case 3:
-          color = '#8B5CF6'
+          color = '#10B981'
           break
         case 4:
-          color = '#F59E0B'
+          color = '#10B981'
           break
         case 5:
           color = '#EF4444'
@@ -153,7 +153,7 @@ export default {
 }
 
 .active {
-  background: #ef4444;
+  background: #6b7280;
   color: #fff;
   z-index: 999;
 }

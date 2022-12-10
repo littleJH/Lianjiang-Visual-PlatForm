@@ -70,7 +70,6 @@ export default {
     if (this.activeIndex !== '/Welcome' && '/Login') {
       this.logStatus = 'logoutTag'
     }
-    console.log(this.activeIndex)
   },
   components: {
     logoutTag,

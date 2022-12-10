@@ -61,6 +61,7 @@ export default {
           window.URL.revokeObjectURL(href)
         })
         .catch(err => {
+          console.log(err)
           this.$message.error(err.message)
         })
     }

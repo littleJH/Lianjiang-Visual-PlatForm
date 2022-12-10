@@ -41,15 +41,15 @@ export default {
             type: 'shadow'
           }
         },
-        title: {
-          text: '监测范围内各项指标不同水质等级所占天数',
-          left: 'center',
-          top: '3%',
-          textStyle: {
-            fontFamily: 'SimSun',
-            fontSize: '14'
-          }
-        },
+        // title: {
+        //   text: '监测范围内各项指标不同水质等级所占天数',
+        //   left: 'center',
+        //   top: '3%',
+        //   textStyle: {
+        //     fontFamily: 'SimSun',
+        //     fontSize: '14'
+        //   }
+        // },
         // 图例组件。通过点击图例组件控制某个系列的显示与否
         legend: {
           type: 'scroll',
@@ -76,10 +76,7 @@ export default {
         toolbox: {
           feature: {
             // 保存为图片
-            saveAsImage: {},
-            dataView: {
-              show: true
-            }
+            saveAsImage: {}
           }
         },
         xAxis: {

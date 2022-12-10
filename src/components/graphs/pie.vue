@@ -2,7 +2,7 @@
   <div class="container" :class="{ flex: showMd }">
     <div :class="{ left: showMd, container: !showMd }">
       <div class="select">
-        <span>监测范围内</span>
+        <!-- <span>监测范围内</span> -->
         <el-select v-model="selectValue" @change="optionChange" size="small">
           <el-option
             v-for="item in options"
@@ -11,7 +11,7 @@
             :value="item"
           ></el-option>
         </el-select>
-        <span>的各水质等级所占时间的比例</span>
+        <!-- <span>的各水质等级所占时间的比例</span> -->
       </div>
       <div
         class="pieGraph"
@@ -97,8 +97,9 @@ export default {
         },
         // 图例组件。通过点击图例组件控制某个系列的显示与否
         legend: {
+          type: 'scroll',
           right: 'center',
-          bottom: '15%',
+          bottom: '20%',
           // 如果series 对象有name 值，则 legend可以不用写data
           // 修改图例组件 文字颜色
           textStyle: {
@@ -112,22 +113,11 @@ export default {
           bottom: '5%',
           top: '15%'
         },
-        // 工具栏
-        toolbox: {
-          right: '5%',
-          feature: {
-            // 保存为图片
-            saveAsImage: {},
-            dataView: {
-              show: true
-            }
-          }
-        },
         series: [
           {
             type: 'pie',
             radius: [20, 100],
-            center: ['50%', '40%'],
+            center: ['50%', '35%'],
             itemStyle: {
               borderRadius: 5
             },

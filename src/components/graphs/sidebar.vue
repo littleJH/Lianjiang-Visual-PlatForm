@@ -279,6 +279,7 @@ export default {
       const name = this.system === '小时制' ? this.hourName : this.monthName
       // 是否已发送 token已过期 的讯息
       let sendedTokenOutOfDate = false
+      let hasWarning = false
       // 循环获取每个数据项的数据
       this.options.forEach(option => {
         const params = 'fields=' + option.label
@@ -323,6 +324,10 @@ export default {
           })
           .catch(err => {
             console.log(err)
+            if (!hasWarning) {
+              this.$message.error(err.message)
+              hasWarning = true
+            }
           })
       })
     },

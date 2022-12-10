@@ -34,7 +34,7 @@
       </div>
       <!-- 忘记密码 -->
       <el-dialog
-        title="找回秘密"
+        title="找回密码"
         :visible.sync="verifyDialog"
         width="400px"
         :close-on-click-modal="false"

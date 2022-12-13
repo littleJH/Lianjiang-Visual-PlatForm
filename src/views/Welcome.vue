@@ -58,7 +58,6 @@ export default {
         this.$router.push('/overview')
       } else {
         this.$router.push('/login')
-        console.log('enter into login')
       }
     }
   },

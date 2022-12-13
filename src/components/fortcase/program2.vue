@@ -1,20 +1,23 @@
 <template>
   <div class="container">
+    <h3>历史预测</h3>
     <el-divider></el-divider>
     <div class="select-container">
       <!-- <span>根据过去</span> -->
+      <p>根据过去：</p>
       <el-select v-model="pastOption" placeholder="请选择">
-        <el-option :value="1" label="根据过去一个月"></el-option>
-        <el-option :value="2" label="根据过去两个月"></el-option>
-        <el-option :value="3" label="根据过去三个月"></el-option>
+        <el-option :value="1" label="一个月"></el-option>
+        <el-option :value="2" label="两个月"></el-option>
+        <el-option :value="3" label="三个月"></el-option>
       </el-select>
     </div>
     <div class="select-container">
       <!-- <span>预测未来</span> -->
+      <p>预测未来：</p>
       <el-select v-model="futureOption" placeholder="请选择">
-        <el-option :value="1" label="预测未来一个月"></el-option>
-        <el-option :value="2" label="预测未来两个月"></el-option>
-        <el-option :value="3" label="预测未来三个月"></el-option>
+        <el-option :value="1" label="一个月"></el-option>
+        <el-option :value="2" label="两个月"></el-option>
+        <el-option :value="3" label="三个月"></el-option>
       </el-select>
     </div>
     <el-divider></el-divider>
@@ -165,7 +168,6 @@ export default {
 
 <style lang="less" scoped>
 .select-container {
-  display: flex;
   // span {
   //   display: inline-block;
   //   width: 60px;
@@ -173,6 +175,7 @@ export default {
   //   line-height: 32px;
   // }
   .el-select {
+    display: block;
     width: 200px;
     margin-bottom: 10px;
   }

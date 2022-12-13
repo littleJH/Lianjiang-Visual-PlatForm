@@ -117,7 +117,7 @@ export default {
     async getLineListAgain() {
       await this.empty()
       this.getLineList()
-      this.$message.success('请稍等')
+      this.$message.info('请稍等')
     },
     systemChange() {
       this.getLineListAgain()
@@ -158,18 +158,6 @@ export default {
 
       getLineData(name, this.system, params, this.config)
         .then(res => {
-          // 验证token是否过期
-          if (res.data.code === 201) {
-            this.$message.warning('登录已过期，请重新登录')
-            this.$router.push('/login')
-            return
-          }
-
-          if (res.data.code === 400) {
-            this.$message.warning('数据缺失')
-            this.myChart.hideLoading()
-          }
-
           let data = res.data.data.resultArr
 
           // 将表中数值为 0 的字段赋值为 ''
@@ -196,7 +184,6 @@ export default {
         })
         .catch(err => {
           console.log(err)
-          this.$message.error(err.message)
         })
     },
     initChart() {
@@ -273,15 +260,14 @@ export default {
           // }
           selected: selected
         },
-        // title: {
-        //   text: '监测范围内水质基本参数均值&污染物监测指标均值',
-        //   left: 'center',
-        //   top: '3%',
-        //   textStyle: {
-        //     fontFamily: 'SimSun',
-        //     fontSize: '14'
-        //   }
-        // },
+        title: {
+          text: this.hourName,
+          left: 'center',
+          textStyle: {
+            fontFamily: 'SimSun',
+            fontSize: '16'
+          }
+        },
         // 提示框组件
         tooltip: {
           // 触发类型：坐标轴触发

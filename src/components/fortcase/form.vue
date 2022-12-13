@@ -1,20 +1,11 @@
 <template>
   <div class="form-container">
-    <div class="btn-container">
-      <el-button-group>
-        <el-button :type="btnType" @click="btn1Click">预测 1</el-button>
-        <el-button :type="btnType2" @click="btn2Click">预测 2</el-button>
-      </el-button-group>
-    </div>
-
-    <div class="program">
-      <component :is="program"></component>
-    </div>
+    <Program2 class="program"></Program2>
   </div>
 </template>
 
 <script>
-import Program1 from '@/components/fortcase/program1.vue'
+// import Program1 from '@/components/fortcase/program1.vue'
 import Program2 from '@/components/fortcase/program2.vue'
 export default {
   data() {
@@ -24,20 +15,8 @@ export default {
       btnType2: ''
     }
   },
-  methods: {
-    btn1Click() {
-      this.program = 'Program1'
-      this.btnType = 'primary'
-      this.btnType2 = ''
-    },
-    btn2Click() {
-      this.program = 'Program2'
-      this.btnType = ''
-      this.btnType2 = 'primary'
-    }
-  },
+  methods: {},
   components: {
-    Program1,
     Program2
   }
 }
@@ -49,14 +28,8 @@ export default {
   height: 100%;
   overflow: auto;
   border: 1px solid #ccc;
-  .btn-container {
-    width: 90%;
-    display: flex;
-    padding: 30px 0 0 30px;
-  }
   .program {
     width: 80%;
-    height: 100%;
     padding: 30px;
   }
 }

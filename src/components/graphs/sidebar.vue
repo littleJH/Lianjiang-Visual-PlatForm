@@ -278,20 +278,12 @@ export default {
       this.config.signal = this.controller.signal
       const name = this.system === '小时制' ? this.hourName : this.monthName
       // 是否已发送 token已过期 的讯息
-      let sendedTokenOutOfDate = false
       let hasWarning = false
       // 循环获取每个数据项的数据
       this.options.forEach(option => {
         const params = 'fields=' + option.label
         getLineData(name, this.system, params, this.config)
           .then(res => {
-            // 验证token是否过期
-            if (res.data.code === 201 && !sendedTokenOutOfDate) {
-              this.$message.warning('登录已过期，请重新登录')
-              sendedTokenOutOfDate = true
-              return
-            }
-
             let data = res.data.data.resultArr
 
             // 将表中数值为 0 的字段赋值为 ''

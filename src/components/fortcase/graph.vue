@@ -70,6 +70,14 @@ export default {
           // 触发类型：坐标轴触发
           trigger: 'axis'
         },
+        title: {
+          text: '对未来的观测值预测',
+          left: 'center',
+          textStyle: {
+            fontFamily: 'SimSun',
+            fontSize: '16'
+          }
+        },
         legend: {
           type: 'scroll',
           left: 'center',
@@ -84,7 +92,7 @@ export default {
         grid: {
           top: '5%',
           left: '1%',
-          right: '8%',
+          right: '1%',
           bottom: '25%',
           show: false, // 显示边框
           borderColor: '#012f4a', // 边框颜色
@@ -162,7 +170,9 @@ export default {
 
 <style lang="less" scoped>
 .line-container {
-  width: 70%;
+  width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
 }
 </style>

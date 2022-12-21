@@ -1,17 +1,23 @@
 import request from '@/util/request'
+import router from '../router'
+import Vue from 'vue'
+import bus from '../util/eventBus'
 
 export const getLineData = (name, system, params, config) => {
   // 拦截器
+  let hasWarning = false
   request.interceptors.response.use((res) => {
-    if (res.data.code === 201) {
-      this.$message.warning('登录已过期，请重新登录')
-      this.$router.push('/login')
+    if (res.data.code === 201 && !hasWarning) {
+      Vue.prototype.$message.warning('登录已过期，请重新登录')
+      router.push('/login')
+      hasWarning = true
       return
     }
 
-    if (res.data.code === 400) {
-      this.$message.warning('数据缺失')
-      this.myChart.hideLoading()
+    if (res.data.code === 400 && !hasWarning) {
+      Vue.prototype.$message.warning('数据缺失')
+      bus.$emit('hideLoading')
+      hasWarning = true
       return
     }
     return res

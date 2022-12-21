@@ -1,10 +1,10 @@
 <template>
   <div class="ov-container" :style="`height: ${containerHeight}px`">
-    <div class="row" style="height: 50%; margin: 0.5% 0">
+    <div class="row" style="margin: 0.5% 0">
       <Map pattern="overview"></Map>
     </div>
     <div class="row">
-      <div class="col card" style="width: 55%">
+      <div id="lineGraph" class="col card" style="width: 55%">
         <LineGraph pattern="overview"></LineGraph>
       </div>
       <div class="col card" style="width: 40%">
@@ -14,12 +14,13 @@
     <div class="row">
       <div class="col card" style="width: 55%; display: flex">
         <Graph></Graph>
-        <InputCard></InputCard>
+        <InputCard v-show="show"></InputCard>
       </div>
       <div class="col card" style="width: 40%">
         <PieGraph pattern="overview"></PieGraph>
       </div>
     </div>
+    <div style="height: 1px"></div>
   </div>
 </template>
 
@@ -34,7 +35,8 @@ export default {
   name: 'my-overview',
   data() {
     return {
-      containerHeight: window.innerHeight - 57
+      containerHeight: window.innerHeight - 57,
+      show: false
     }
   },
   components: {
@@ -54,7 +56,7 @@ export default {
   padding-top: 56px;
   .row {
     width: 100%;
-    height: 46%;
+    height: 48%;
     display: flex;
     justify-content: space-evenly;
     box-sizing: border-box;

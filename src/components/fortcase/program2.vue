@@ -48,113 +48,97 @@ export default {
     }
   },
   methods: {
-    empty() {
-      return new Promise(resolve => {
-        let flag = true
-        this.dataset.length = 0
-        this.resLength = 0
-        bus.$emit('empty')
-        while (flag) {
-          if (this.dataset.length === 0) {
-            flag = false
-            resolve()
-          }
-        }
-      })
-    },
     submit() {
-      this.empty().then(() => {
-        bus.$emit('showLoading')
-        this.btnMsg = '预测中'
-        this.btnDisabled = true
-        const split = this.pastOption / (this.pastOption + this.futureOption)
-        const config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
+      bus.$emit('showLoading')
+      this.btnMsg = '预测中'
+      this.btnDisabled = true
+      // const split = this.pastOption / (this.pastOption + this.futureOption)
+      const split = 0.7
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         }
-        let index = 0
-        let hasWarning = false
-        this.datasetList.forEach(item => {
-          const params = `split=${split}&dataset=${item}`
-          forecast(params, config)
-            .then(res => {
-              const data = res.data.data.data
+      }
+      let index = 0
+      this.datasetList.forEach(item => {
+        const params = `split=${split}&dataset=${item}`
+        forecast(params, config)
+          .then(res => {
+            const data = res.data.data.data
 
-              if (index === 0) {
-                if (res.data.code === 201) {
-                  this.$message.warning('登录已过期，请重新登录')
-                  this.$router.push('/login')
-                  return
-                }
-                this.resLength = data.length
-                const interval = Math.trunc(
-                  (24 * 30 * 60 * 60 * this.futureOption) / this.resLength
-                )
-                let lastDate = this.$moment(arr[arr.length - 1].时间)
-                // result = this.lastDate
-                for (let i = 0; i < this.resLength; i++) {
-                  const obj = {
-                    时间: '',
-                    氨氮: 0
-                  }
-                  lastDate = lastDate.add(interval, 'seconds')
-                  obj.时间 = lastDate.format()
-                  this.dataset.push(obj)
-                }
+            if (index === 0) {
+              if (res.data.code === 201) {
+                this.$message.warning('登录已过期，请重新登录')
+                this.$router.push('/login')
+                return
               }
+              this.resLength = data.length
+              const interval = Math.trunc(
+                (24 * 30 * 60 * 60 * this.futureOption) / this.resLength
+              )
+              let lastDate = this.$moment(arr[arr.length - 1].时间)
+              // result = this.lastDate
+              for (let i = 0; i < this.resLength; i++) {
+                const obj = {
+                  时间: '',
+                  氨氮: 0
+                }
+                lastDate = lastDate.add(interval, 'seconds')
+                obj.时间 = lastDate.format()
+                this.dataset.push(obj)
+              }
+            }
 
-              switch (item) {
-                case 'Temperature':
-                  this.dataset.forEach((item, index) => {
-                    item.水温 = data[index]
-                  })
-                  break
-                case 'PH':
-                  this.dataset.forEach((item, index) => {
-                    item.pH = data[index]
-                  })
-                  break
-                case 'DO':
-                  this.dataset.forEach((item, index) => {
-                    item.溶解氧 = data[index]
-                  })
-                  break
-                case 'Turbidity':
-                  this.dataset.forEach((item, index) => {
-                    item.浊度 = data[index]
-                  })
-                  break
-                case 'EC':
-                  this.dataset.forEach((item, index) => {
-                    item.电导率 = data[index]
-                  })
-                  break
-                case 'CODcr':
-                  this.dataset.forEach((item, index) => {
-                    item.CODcr = data[index]
-                  })
-                  break
-                default:
-                  break
-              }
-              if (index === this.datasetList.length - 1) {
-                this.btnMsg = '点击预测'
-                this.btnDisabled = false
-                bus.$emit('dataChange', {
-                  dataset: this.dataset
+            switch (item) {
+              case 'Temperature':
+                this.dataset.forEach((item, index) => {
+                  item.水温 = data[index]
                 })
-              }
-              index++
-            })
-            .catch(err => {
-              console.log(err)
-              if (!hasWarning) {
-                this.$message.error(err.message)
-                hasWarning = true
-              }
-            })
-        })
+                break
+              case 'PH':
+                this.dataset.forEach((item, index) => {
+                  item.pH = data[index]
+                })
+                break
+              case 'DO':
+                this.dataset.forEach((item, index) => {
+                  item.溶解氧 = data[index]
+                })
+                break
+              case 'Turbidity':
+                this.dataset.forEach((item, index) => {
+                  item.浊度 = data[index]
+                })
+                break
+              case 'EC':
+                this.dataset.forEach((item, index) => {
+                  item.电导率 = data[index]
+                })
+                break
+              case 'CODcr':
+                this.dataset.forEach((item, index) => {
+                  item.CODcr = data[index]
+                })
+                break
+              default:
+                break
+            }
+            if (index === this.datasetList.length - 1) {
+              this.btnMsg = '点击预测'
+              this.btnDisabled = false
+              bus.$emit('dataChange', {
+                dataset: this.dataset
+              })
+            }
+            index++
+          })
+          .catch(err => {
+            console.log(err)
+            // if (!hasWarning) {
+            //   this.$message.error(err.message)
+            //   hasWarning = true
+            // }
+          })
       })
     }
   },
@@ -162,6 +146,9 @@ export default {
     bus.$on('listMsg', val => {
       this.lastDate = val.lastDate
     })
+  },
+  mounted() {
+    this.submit()
   }
 }
 </script>

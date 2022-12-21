@@ -116,6 +116,11 @@ export default {
   methods: {
     async getLineListAgain() {
       await this.empty()
+      const el = document.getElementById('lineGraph')
+      el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
       this.getLineList()
       this.$message.info('请稍等')
     },
@@ -275,8 +280,8 @@ export default {
         },
         grid: {
           top: '5%',
-          left: '0',
-          right: '0',
+          left: '1%',
+          right: '1%',
           bottom: '25%',
           borderColor: '#012f4a', // 边框颜色
           containLabel: true // 包含刻度文字在内
@@ -286,8 +291,7 @@ export default {
           feature: {
             // 保存为图片
             saveAsImage: {}
-          },
-          right: '2%'
+          }
         },
         xAxis: {
           // 坐标轴类型
@@ -334,6 +338,9 @@ export default {
         ? (this.monthName = val.siteName)
         : (this.hourName = val.siteName)
       this.getLineListAgain()
+    })
+    bus.$on('hideLoading', () => {
+      this.myChart.hideLoading()
     })
   },
   activated() {

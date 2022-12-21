@@ -216,7 +216,6 @@ export default {
     // 锚点跳转
     goAnchor(id) {
       const el = document.getElementById(id)
-      console.log('getAnchor', el.offsetTop)
       // document.body.scrollTop = el.offsetTop + 57
       el.scrollIntoView({
         behavior: 'smooth',

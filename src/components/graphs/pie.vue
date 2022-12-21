@@ -99,7 +99,7 @@ export default {
         legend: {
           type: 'scroll',
           right: 'center',
-          bottom: '20%',
+          bottom: '3%',
           // 如果series 对象有name 值，则 legend可以不用写data
           // 修改图例组件 文字颜色
           textStyle: {
@@ -111,13 +111,13 @@ export default {
           left: '5%',
           right: '5%',
           bottom: '5%',
-          top: '15%'
+          top: '5%'
         },
         series: [
           {
             type: 'pie',
             radius: [20, 100],
-            center: ['50%', '35%'],
+            center: ['50%', '50%'],
             itemStyle: {
               borderRadius: 5
             },
@@ -209,6 +209,7 @@ export default {
 .container {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .flex {
@@ -230,7 +231,10 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 30px;
+  padding-top: 10px;
+  position: absolute;
+  top: 0;
+  z-index: 9;
   span {
     display: inline-block;
     height: 30px;
